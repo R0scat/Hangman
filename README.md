@@ -51,3 +51,5 @@ void randomWord()
 ```
 
 Besides the *randomWord()* function, the *hangman()* function also uses a function called *wordInUse(char[])*.
+
+README in progress... :(
