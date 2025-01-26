@@ -156,3 +156,44 @@ void hangmanLetter(int& mistakes, char showedWord[251], char guessed[251])
 	cout << "\n";
 }
 ```
+The *checkMiss*, *hangmanProgress* and *hangmanColumns* functions all work in tandem to display the correct output to the user. With a 3x3 matrix, the number of mistakes is showed with a stick man drawing. The matrix *counterMiss* keeps values between 0 and 4 and, using the *hangmanColumns* shows these values as *space*, *0* (the head of the stick man), | (the body), \ and / (the hands and legs). *HangmanProgress* simply outputs this matrix, adding the rest of the drawing.
+
+```cpp
+void hangmanColumns(int line)
+{
+	int column;
+	for (column = 1; column <= 3; column++)
+		switch (counterMiss[line][column])
+		{
+		case 0: cout << " "; break;
+		case 1: cout << 0; break;
+		case 2: cout << "|"; break;
+		case 3: cout << "\\"; break;
+		case 4: cout << "/"; break;
+		}
+	cout << "\n";
+}
+void checkMiss(int& mistakes)
+{
+	cout << "\nThe word does not contain this letter, sorry...\n";
+	mistakes++;
+	switch (mistakes)
+	{
+	case 1: counterMiss[1][2] = 1; break;
+	case 2: counterMiss[2][2] = 2; break;
+	case 3: counterMiss[2][3] = 3; break;
+	case 4: counterMiss[2][1] = 4; break;
+	case 5: counterMiss[3][3] = 3; break;
+	case 6: counterMiss[3][1] = 4; break;
+	}
+}
+void hangmanProgress()
+{
+	cout << " -----\n";
+	cout << " |   |\n";
+	cout << " |  "; hangmanColumns(1);
+	cout << " |  "; hangmanColumns(2);
+	cout << " |  "; hangmanColumns(3);
+	cout << " --------\n";
+}
+```
